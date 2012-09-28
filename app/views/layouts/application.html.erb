@@ -7,6 +7,22 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+	<%if session[:user_id] == nil%>
+		<%= link_to "login", sessions_new_path %>
+	<%else%>
+		<%= link_to "logout", :controller => "sessions", action: "destroy" %>
+
+	<%end%>
+<%= session[:user_id]%>
+
+
+<% flash.each do |key, value| %>
+<% if key == :msg %>
+     <div class="flash <%= key %>"><%= value %></div>
+<% end %>
+<% end %>
+
+
 
 <%= yield %>
 

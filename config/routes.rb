@@ -1,4 +1,12 @@
 BssAuthenticationApp::Application.routes.draw do
+  get "sessions/new"
+  
+  get "sessions/show_code"
+
+  get "sessions/create"
+
+  get "sessions/destroy"
+
   resources :users
 
   # The priority is based upon order of creation:

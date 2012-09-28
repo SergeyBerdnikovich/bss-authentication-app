@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  #before_filter :login_required, :only => [:edit, :update, :destroy, :index]
   # GET /users
   # GET /users.json
   def index
@@ -40,7 +41,9 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(params[:user])
+    @user = User.new(login: params[:user][:login], email: params[:user][:email])
+    @user.user_password=(params[:user][:password])
+    
     @users = User.all
     if @users.size == 0 
       @user.role = Role.new(role: "Admin")
