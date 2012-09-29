@@ -8,8 +8,13 @@ class SessionsController < ApplicationController
   	if params[:password] == params[:password_confirmation]
 	  	@user = User.authenticate(params[:login], params[:password])
 	  	if @user
-	  	session[:auth_cod] = UsersHelper.auth_code(@user.email)
-	  	session[:time] = Time.now
+	  		if @user.two_step_auth == true
+	  			session[:auth_cod] = UsersHelper.auth_code(@user.email)
+	  			session[:time] = Time.now
+	  		else
+				session[:user_id] = @user.id
+	  			redirect_to users_path
+	  		end	
 	    else
 	    	flash[:msg] = "password or login invalid"
 	    	render 'new'

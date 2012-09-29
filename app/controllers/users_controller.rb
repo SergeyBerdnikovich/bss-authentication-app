@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_filter :login_required, :only => [:edit, :update, :destroy, :index]
   before_filter :check_admin, :only => [:destroy ]
+  before_filter :current_user
   # GET /users
   # GET /users.json
   def index
@@ -44,7 +45,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(login: params[:user][:login], email: params[:user][:email])
     @user.user_password=(params[:user][:password])
-    
+   # @user.password=(params[:user][:password])
+    @user.two_step_auth = 1
     @users = User.all
     if @users.size == 0 
       @user.role = Role.new(role: "Admin")
@@ -68,7 +70,6 @@ class UsersController < ApplicationController
   # PUT /users/1.json
   def update
     @user = User.find(params[:id])
-
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to @user, notice: 'User was successfully updated.' }

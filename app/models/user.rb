@@ -12,8 +12,10 @@ class User < ActiveRecord::Base
    					:uniqueness => true,
             		:format => {:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i}	
   validates :password, presence: "true",
-  					:confirmation => true							
+                    :length => { :minimum => 3, :maximum => 40 },
+                    :confirmation =>true
   #validates :password_confirmation, :presence => true
+ 
    
     def self.encrypted_password(password, salt)
         string_to_hash = password + "wibble" + salt
@@ -41,7 +43,7 @@ class User < ActiveRecord::Base
   	      		if user.password != expected_password
   	        	user = nil
   	      		end
-  	      	end	
+  	      end	
   	    end
         user
     end
