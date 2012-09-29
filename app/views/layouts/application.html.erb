@@ -11,9 +11,9 @@
 		<%= link_to "login", sessions_new_path %>
 	<%else%>
 		<%= link_to "logout", :controller => "sessions", action: "destroy" %>
-
+		id: <%= session[:user_id]%> login: <%= @current_user.login %> role: <%= @current_user.role.role %>
 	<%end%>
-<%= session[:user_id]%>
+
 
 
 <% flash.each do |key, value| %>

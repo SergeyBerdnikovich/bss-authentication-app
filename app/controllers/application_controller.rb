@@ -10,4 +10,11 @@ class ApplicationController < ActionController::Base
     	redirect_to sessions_new_path
   	end
   end
+  def check_admin
+        if Role.find_by_user_id(session[:user_id]).role != "Admin"
+          flash[:msg] = "insufficient access rights"
+          redirect_to users_path
+        end
+  end
+
 end
