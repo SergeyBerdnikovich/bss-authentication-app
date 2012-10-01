@@ -12,13 +12,14 @@ class User < ActiveRecord::Base
    					:length => { :minimum => 5, :maximum => 50, },
    					:uniqueness => true,
             		:format => {:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i}	
- validates :full_name,
+  validates :full_name,
             :length => { :minimum => 6, :maximum => 60, },
             :format => {:with => /[A-Z][a-z]+ [A-Z][a-z]+/}
   validates :password, presence: "true",
                     :length => { :minimum => 3, :maximum => 40 },
                     :confirmation =>true
   validates :password_confirmation, :presence => true
+  validates :two_step_auth, :presence => true
  
     def self.encrypted_password(password, salt)
         string_to_hash = password + "wibble" + salt

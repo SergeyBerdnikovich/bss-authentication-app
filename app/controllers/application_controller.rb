@@ -11,10 +11,19 @@ class ApplicationController < ActionController::Base
   	end
   end
   def check_admin
-        if Role.find_by_user_id(session[:user_id]).role != "Admin"
-          flash[:msg] = "insufficient access rights"
-          redirect_to users_path
-        end
+    if Role.find_by_user_id(session[:user_id]).role != "Admin"
+      flash[:msg] = "insufficient access rights"
+      redirect_to users_path
+    end
   end
-
+  def is_admin?
+    if current_user
+      if @current_user.role.role == "Admin"
+        return true
+      else 
+        return false
+      end
+    end
+    return false
+  end
 end
