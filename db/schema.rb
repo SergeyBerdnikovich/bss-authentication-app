@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120929133946) do
+ActiveRecord::Schema.define(:version => 20121001085544) do
 
   create_table "roles", :force => true do |t|
     t.string   "role"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(:version => 20120929133946) do
     t.datetime "updated_at",    :null => false
     t.string   "salt"
     t.boolean  "two_step_auth"
+    t.string   "full_name"
   end
 
 end
