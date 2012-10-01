@@ -1,8 +1,9 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :login, :password, :password_confirmation
+  attr_accessible :email, :login, :password, :password_confirmation, :full_name, :two_step_auth
   has_one :role, dependent: :destroy
 
   before_create :encrypted_user_password
+  before_update :encrypted_user_password
 
   validates :login, presence: "true",
   					uniqueness: "true",
@@ -11,6 +12,9 @@ class User < ActiveRecord::Base
    					:length => { :minimum => 5, :maximum => 50, },
    					:uniqueness => true,
             		:format => {:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i}	
+ validates :full_name,
+            :length => { :minimum => 6, :maximum => 60, },
+            :format => {:with => /[A-Z][a-z]+ [A-Z][a-z]+/}
   validates :password, presence: "true",
                     :length => { :minimum => 3, :maximum => 40 },
                     :confirmation =>true

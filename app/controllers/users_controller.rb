@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :login_required, :only => [:edit, :update, :destroy, :index]
+  before_filter :login_required, :only => [:edit, :update, :destroy, :show, :show_profile]
   before_filter :check_admin, :only => [:destroy ]
   before_filter :current_user
   # GET /users
@@ -22,6 +22,15 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
+      format.json { render json: @user }
+    end
+  end
+
+  def show_profile
+    @user = User.find(params[:id])
+
+    respond_to do |format|
+      format.html # show_profile.html.erb
       format.json { render json: @user }
     end
   end

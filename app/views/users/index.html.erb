@@ -1,6 +1,6 @@
 <h1>Listing users</h1>
 
-<table>
+<table class="table table-striped">
   <tr>
     <th>id</th>
     <th>Login</th>
@@ -17,7 +17,7 @@
 <% @users.each do |user| %>
   <tr>
     <td><%= user.id %></td>
-    <td><%= user.login %></td>
+    <td><%= link_to "#{user.login}", profile_path(user.id) %></td>
     <td><%= user.password %></td>
     <td><%= user.email %></td>
     <td><%= user.role.role %></td>
@@ -30,8 +30,34 @@
 <% end %>
 </table>
 
-<br />
+<div class="modal fade" id="myModal">
+    <div class="modal-header">
+        <button class="close" data-dismiss="modal">×</button>
+    <h3>Login</h3>
+    </div>
+    <div class="modal-body">
+        <%= form_tag("/sessions/show_code", :method => "get") do %>
+  <%= label_tag(:login, "login:") %>
+  <%= text_field_tag(:login) %><br>
+  <%= label_tag(:password, "password:") %>
+  <%= password_field_tag(:password) %><br>
+  <%= label_tag(:password_confirmation, "password_confirmation:") %>
+  <%= password_field_tag(:password_confirmation) %><br>
+ 
 
-<%= will_paginate @users  %>
+    </div>
+    <div class="modal-footer">
+        <a href="users" class="btn">Закрыть</a>
+        <%= submit_tag("Enter") %>
+    </div>
+    <% end %>
+</div>
 
-<%= link_to 'New User', new_user_path %>
+
+<div class="pagination ">
+    <ul>
+        <li><%= will_paginate @users  %></li>
+</ul>
+</div><br>
+<a href="/users/new" class="btn">New User</a>
+

@@ -7,24 +7,34 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<%if session[:user_id] == nil%>
-		<%= link_to "login", sessions_new_path %>
-	<%else%>
-		<%= link_to "logout", :controller => "sessions", action: "destroy" %>
-		id: <%= session[:user_id]%> login: <%= @current_user.login %> role: <%= @current_user.role.role %>
-	<%end%>
+	<div class="container">
+	    <div class="navbar">
+	    	<div class="navbar-inner">
+	    		<a class="brand" href="/users">Bss</a>
+	 			<ul class="nav">
+	 				<%if session[:user_id] == nil%>
+					<li><a href="/sessions/new">login</a></li>
+					<li ><a href="/users/new">Registration</a></li>
+					<%else%>
+					<li><a href="/sessions/destroy">logout</a></li>
+					<li><%= @current_user.role.role %>: <%= @current_user.login %></li>
+					<li><%= link_to "My Profile", profile_path(@current_user.id)%></li>
+					<%end%>
+					<li><a class="btn" data-toggle="modal" href="#myModal" >Login</a></li>
+	 			</ul>
+				
+				<% flash.each do |key, value| %>
+				<% if key == :msg %>
+				     <div class="flash <%= key %>"><%= value %></div>
+				<% end %>
+				<% end %>
+	    	</div>
+	    </div>
 
 
-
-<% flash.each do |key, value| %>
-<% if key == :msg %>
-     <div class="flash <%= key %>"><%= value %></div>
-<% end %>
-<% end %>
+	<%= yield %>
 
 
-
-<%= yield %>
-
+	</div>
 </body>
 </html>

@@ -11,22 +11,31 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="well">
     <%= f.label :login %><br />
     <%= f.text_field :login %>
   </div>
-  <div class="field">
+  <div class="well">
+    <%= f.label :FullName %><br />
+    <%= f.text_field :full_name %>
+  </div>
+  <div class="well">
     <%= f.label :password %><br />
     <%= f.text_field :password %>
   </div>
-  <div class="field">
+  <div class="well">
     <%= f.label :password_confirmation %><br />
     <%= f.text_field :password_confirmation %>
   </div>
-  <div class="field">
+  <div class="well">
     <%= f.label :email %><br />
     <%= f.text_field :email %>
   </div>
+  <div class="well">
+  <%= f.label :two_step_auth %>
+  Yes<%= f.check_box :two_step_auth, {:checked => true} %>
+  </div><br>
+ 
   <div class="actions">
     <%= f.submit %>
   </div>

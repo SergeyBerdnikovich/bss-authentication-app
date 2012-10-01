@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<%= image_tag gravatar(@user.email)%>
+<p>
+  <b>Role:</b>
+  <%= @user.role.role %>
+</p>
+<p>
+  <b>Login:</b>
+  <%= @user.login %>
+</p>
+<p>
+  <b>Full Name:</b>
+  <%= @user.full_name %>
+</p>
+<% if @current_user.id == @user.id %>
+    <p>
+      <b>Email:</b>
+      <%= @user.email %>
+    </p>
+<% end %>    
+
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

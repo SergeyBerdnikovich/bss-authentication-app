@@ -7,7 +7,8 @@ gem 'rails', '3.2.8'
 
 gem 'sqlite3', group: [:development, :test]
 gem 'pg', group: :production
-
+gem 'rspec-rails', group: [:development, :test]
+gem 'twitter-bootstrap-rails'
 gem 'slim'
 gem 'will_paginate'
 # Gems used only for assets and not required
