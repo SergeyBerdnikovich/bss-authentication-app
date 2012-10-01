@@ -1,5 +1,9 @@
 module UsersHelper
 
+    def gravatar(email)
+		return "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(email.to_s)}?d=wavatar"
+	end
+	
   protected
 
 	def self.auth_code(email)
@@ -16,7 +20,5 @@ module UsersHelper
     	#salt = SecureRandom.hex(32)
     	salt = self.object_id.to_s + rand.to_s
     end
-    def gravatar(email)
-		return "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(email.to_s)}?d=wavatar"
-	end
+
 end
