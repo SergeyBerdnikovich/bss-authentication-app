@@ -3,3 +3,7 @@ require File.expand_path('../application', __FILE__)
 
 # Initialize the rails application
 BssAuthenticationApp::Application.initialize!
+
+require 'rubygems'
+
+gem 'will_paginate'
