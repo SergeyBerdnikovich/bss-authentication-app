@@ -1,0 +1,8 @@
+= form_tag("/sessions/create", :method => "get") do
+  | auth_cod: #{session[:auth_cod]}
+  br
+    = label_tag(:auth_cod, "enter_auth_cod(30 seconds, the time has gone...):")
+    = text_field_tag(:auth_cod)
+    br
+      = hidden_field_tag(:user_id, @user.id)
+      = submit_tag("Enter")

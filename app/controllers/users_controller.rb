@@ -43,9 +43,7 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(login: params[:user][:login], email: params[:user][:email])
-    @user.user_password=(params[:user][:password])
-   # @user.password=(params[:user][:password])
+    @user = User.new(params[:user])
     @user.two_step_auth = 1
     @users = User.all
     if @users.size == 0 

@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :login, :password, :password_confirmation
   has_one :role, dependent: :destroy
 
-  
+  before_create :encrypted_user_password
 
   validates :login, presence: "true",
   					uniqueness: "true",
@@ -14,21 +14,13 @@ class User < ActiveRecord::Base
   validates :password, presence: "true",
                     :length => { :minimum => 3, :maximum => 40 },
                     :confirmation =>true
-  #validates :password_confirmation, :presence => true
+  validates :password_confirmation, :presence => true
  
-   
     def self.encrypted_password(password, salt)
         string_to_hash = password + "wibble" + salt
         Digest::SHA1.hexdigest(string_to_hash)
-    end			
-    def create_new_salt
-        self.salt = self.object_id.to_s + rand.to_s
-    end
-    def user_password=(pwd)
-        return if pwd.blank?
-        create_new_salt
-        self.password = User.encrypted_password(pwd, self.salt)
-    end
+    end 
+
     def self.authenticate(login, password)
       	user = self.find_by_login(login)
 		    if user
@@ -46,5 +38,11 @@ class User < ActiveRecord::Base
   	      end	
   	    end
         user
+    end
+    private
+
+    def encrypted_user_password
+      self.salt = UsersHelper.create_new_salt
+      self.password = UsersHelper.set_user_password(self.password, self.salt)
     end
 end

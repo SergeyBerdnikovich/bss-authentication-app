@@ -1,0 +1,17 @@
+doctype
+html
+  head
+    title BssAuthenticationApp
+    = stylesheet_link_tag    "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  body
+    - if session[:user_id] == nil
+      = link_to "login", sessions_new_path
+    - else
+      = link_to "logout", :controller => "sessions", action: "destroy"
+      | id: #{session[:user_id]} login: #{@current_user.login} role: #{@current_user.role.role}
+    - flash.each do |key, value|
+      - if key == :msg
+        div{:class => "flash # key}"
+    = yield
