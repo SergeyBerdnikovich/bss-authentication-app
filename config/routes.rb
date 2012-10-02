@@ -1,4 +1,8 @@
 BssAuthenticationApp::Application.routes.draw do
+  devise_for :admins
+
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+
   get "sessions/new"
   
   get "sessions/show_code"
@@ -8,6 +12,9 @@ BssAuthenticationApp::Application.routes.draw do
   get "sessions/create"
 
   get "sessions/destroy"
+
+  devise_for :admins
+  mount RailsAdmin::Engine => '/rails_admin', :as => 'rails_admin'
 
   resources :users
 

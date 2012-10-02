@@ -12,6 +12,9 @@ gem 'twitter-bootstrap-rails'
 gem 'slim'
 gem 'will_paginate'
 gem 'bcrypt-ruby'
+gem 'rails_admin'
+gem 'devise'
+gem 'simplecov', :require => false, :group => :test
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -40,3 +43,6 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
+
+
+gem "devise"

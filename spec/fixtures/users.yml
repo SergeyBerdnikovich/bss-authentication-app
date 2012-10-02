@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  login: "sergey"
+  password_digest: "1234"
+  full_name: "Sergey Berdnikovich"
+  email: "sergey.berdnikovich@altoros.com"
+  two_step_auth: true
+
+two:
+  login: "vasya"
+  password_digest: "2234"
+  full_name: "Hlksjdh Dlkjasd"
+  email: "sdfsadfasd@asdasd.com"
+  two_step_auth: false

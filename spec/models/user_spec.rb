@@ -7,9 +7,14 @@ describe "UsersModel" do
 	end
 	describe "authenticate" do
 		xit "has correct return value" do
-			#User.authenticate(@user.login, @user.password).should be_a_kind_of User
+			User.authenticate(@user.login, @user.password).should be_a_kind_of User
 		end
-
+		xit "has correct return value" do
+			User.authenticate(@user.email, @user.password).should be_a_kind_of User
+		end
+		it "has be nill" do
+			User.authenticate("asfasf", "gdasasga").should be_nil
+		end
 	end
 
 	describe "user validates" do

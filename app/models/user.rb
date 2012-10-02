@@ -23,11 +23,11 @@ class User < ActiveRecord::Base
     def self.authenticate(login, password)
        user = User.find_by_login(login).try(:authenticate, password)
         if user
-          return user
+           user
         else
           user = User.find_by_email(login).try(:authenticate, password)
           if user
-            return user
+             user
           else
             user = nil
           end
