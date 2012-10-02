@@ -12,5 +12,5 @@ module UsersHelper
   	def self.salt_for_auth_code
     	SecureRandom.hex(32)
     end
-
 end
+

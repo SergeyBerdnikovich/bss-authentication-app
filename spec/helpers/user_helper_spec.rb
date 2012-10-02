@@ -22,4 +22,5 @@ describe "UsersHelper" do
     		UsersHelper.auth_code(@user.email).should match /[0-9]{6}/
     	end
     end
+
 end
