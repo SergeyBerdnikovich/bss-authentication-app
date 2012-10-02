@@ -13,9 +13,6 @@ describe "UsersHelper" do
 
     describe "salt" do
     	it "has correct return value" do
-			UsersHelper.create_new_salt.should match /[0-9]+\.[0-9]+/
-    	end
-    	it "has correct return value" do
 			UsersHelper.salt_for_auth_code.should match /[0-9a-z]{32}/
     	end
     end
@@ -23,12 +20,6 @@ describe "UsersHelper" do
     describe "two step auth" do
     	it "has correct return value" do
     		UsersHelper.auth_code(@user.email).should match /[0-9]{6}/
-    	end
-    end
-
-    describe "password" do
-    	it "has correct return value" do
-    		UsersHelper.set_user_password(@user.password, "1234").should match /[0-9a-z]{40}/
     	end
     end
 end

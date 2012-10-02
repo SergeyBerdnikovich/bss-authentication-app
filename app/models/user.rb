@@ -1,9 +1,9 @@
 class User < ActiveRecord::Base
+
+  has_secure_password
+
   attr_accessible :email, :login, :password, :password_confirmation, :full_name, :two_step_auth
   has_one :role, dependent: :destroy
-
-  before_create :encrypted_user_password
-  before_update :encrypted_user_password
 
   validates :login, presence: "true",
   					uniqueness: "true",
@@ -19,35 +19,19 @@ class User < ActiveRecord::Base
                     :length => { :minimum => 3, :maximum => 40 },
                     :confirmation =>true
   validates :password_confirmation, :presence => true
-  validates :two_step_auth, :presence => true
- 
-    def self.encrypted_password(password, salt)
-        string_to_hash = password + "wibble" + salt
-        Digest::SHA1.hexdigest(string_to_hash)
-    end 
 
     def self.authenticate(login, password)
-      	user = self.find_by_login(login)
-		    if user
-  	      expected_password = encrypted_password(password, user.salt)
-  	      if user.password != expected_password
-  	         user = nil
-  	      end
-  	    else
-  	    	user = self.find_by_email(login)
-  	    	if user
-  	     		expected_password = encrypted_password(password, user.salt)
-  	      		if user.password != expected_password
-  	        	user = nil
-  	      		end
-  	      end	
-  	    end
+       user = User.find_by_login(login).try(:authenticate, password)
+        if user
+          return user
+        else
+          user = User.find_by_email(login).try(:authenticate, password)
+          if user
+            return user
+          else
+            user = nil
+          end
+        end
         user
-    end
-    private
-
-    def encrypted_user_password
-      self.salt = UsersHelper.create_new_salt
-      self.password = UsersHelper.set_user_password(self.password, self.salt)
     end
 end

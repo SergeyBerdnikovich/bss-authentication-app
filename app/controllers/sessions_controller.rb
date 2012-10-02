@@ -1,6 +1,5 @@
 class SessionsController < ApplicationController
 	before_filter :login_required, :only => [:destroy]
-	#before_filter :current_user
   def new
   	redirect_to users_path if session[:user_id]
   end

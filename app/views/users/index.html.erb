@@ -7,7 +7,6 @@
     <th>Password</th>
     <th>Email</th>
     <th>Role</th>
-    <th>Salt</th>
     <th>TwoStepAuth</th>
     <th></th>
     <th></th>
@@ -18,10 +17,9 @@
   <tr>
     <td><%= user.id %></td>
     <td><%= link_to "#{user.login}", profile_path(user.id) %></td>
-    <td><%= user.password %></td>
+    <td><%= user.password_digest %></td>
     <td><%= user.email %></td>
     <td><%= user.role.role %></td>
-    <td><%= user.salt %></td>
     <td><%= user.two_step_auth %></td>
     <td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>

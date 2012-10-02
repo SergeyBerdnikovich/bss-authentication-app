@@ -11,6 +11,7 @@ gem 'rspec-rails', group: [:development, :test]
 gem 'twitter-bootstrap-rails'
 gem 'slim'
 gem 'will_paginate'
+gem 'bcrypt-ruby'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

@@ -17,8 +17,8 @@
 					<li ><a href="/users/new">Registration</a></li>
 					<%else%>
 					<li><a href="/sessions/destroy">logout</a></li>
-					<li><%= @current_user.role.role %>: <%= @current_user.login %></li>
-					<li><%= link_to "My Profile", profile_path(@current_user.id)%></li>
+					<li><%= current_user.role.role %>: <%= current_user.login %></li>
+					<li><%= link_to "My Profile", profile_path(current_user.id)%></li>
 					<%end%>
 					<li><a class="btn" data-toggle="modal" href="#myModal" >Login</a></li>
 	 			</ul>
