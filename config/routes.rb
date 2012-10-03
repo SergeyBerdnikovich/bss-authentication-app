@@ -5,11 +5,11 @@ BssAuthenticationApp::Application.routes.draw do
 
   get "sessions/new"
   
-  get "sessions/show_code"
+  post "sessions/show_code"
 
   match 'users/show_profile/:id' => 'users#show_profile', :as => 'profile'
 
-  get "sessions/create"
+  post "sessions/create"
 
   get "sessions/destroy"
 

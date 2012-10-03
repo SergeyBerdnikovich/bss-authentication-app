@@ -28,30 +28,6 @@
 <% end %>
 </table>
 
-<div class="modal fade" id="myModal">
-    <div class="modal-header">
-        <button class="close" data-dismiss="modal">×</button>
-    <h3>Login</h3>
-    </div>
-    <div class="modal-body">
-        <%= form_tag("/sessions/show_code", :method => "get") do %>
-  <%= label_tag(:login, "login:") %>
-  <%= text_field_tag(:login) %><br>
-  <%= label_tag(:password, "password:") %>
-  <%= password_field_tag(:password) %><br>
-  <%= label_tag(:password_confirmation, "password_confirmation:") %>
-  <%= password_field_tag(:password_confirmation) %><br>
- 
-
-    </div>
-    <div class="modal-footer">
-        <a href="users" class="btn">Закрыть</a>
-        <%= submit_tag("Enter") %>
-    </div>
-    <% end %>
-</div>
-
-
 <div class="pagination ">
     <ul>
         <li><%= will_paginate @users  %></li>

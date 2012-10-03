@@ -1,0 +1,16 @@
+<div class="navbar">
+	<div class="navbar-inner">
+		<a class="brand" href="/users">Bss</a>
+		<ul class="nav">
+			<%if session[:user_id] == nil%>
+				<li><a href="/sessions/new">login</a></li>
+				<li><%= link_to "LogIn", sessions_new_path, remote: true %></li>
+				<li ><a href="/users/new">Registration</a></li>
+			<%else%>
+				<li><a href="/sessions/destroy">logout</a></li>
+				<li><%= current_user.role.role %>: <%= current_user.login %></li>
+				<li><%= link_to "My Profile", profile_path(current_user.id)%></li>
+			<%end%>
+		</ul>
+	</div>
+</div>
