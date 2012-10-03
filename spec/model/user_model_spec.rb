@@ -2,14 +2,13 @@ require 'spec_helper'
 
 describe "UsersModel" do
 	before(:each) do
-		@user = User.create(:login=> 'sergey', :password=> 1234, :email=> 'asdasd@dsd.dd', :full_name=>"Sasfdas Fasdas", :two_step_auth=>true)
-		@user.password_confirmation = "1234"
+		@user = User.create!(:login=> 'sergey2', :password=> "1234", :email=> 'asdasd@dsd.dd', :full_name=>"Sasfdas Fasdas", :two_step_auth=>true, :password_confirmation => "1234")
 	end
 	describe "authenticate" do
-		xit "has correct return value" do
+		it "has correct return value" do
 			User.authenticate(@user.login, @user.password).should be_a_kind_of User
 		end
-		xit "has correct return value" do
+		it "has correct return value" do
 			User.authenticate(@user.email, @user.password).should be_a_kind_of User
 		end
 		it "has be nill" do
