@@ -8,10 +8,10 @@ gem 'rails', '3.2.8'
 gem 'sqlite3', group: [:development, :test]
 gem 'pg', group: :production
 gem 'rspec-rails', group: [:development, :test]
+gem 'capybara', group: :test
 gem 'twitter-bootstrap-rails'
 gem 'slim'
 gem 'will_paginate'
-gem 'bcrypt-ruby'
 gem 'rails_admin'
 gem 'devise'
 gem 'simplecov', :require => false, :group => :test
@@ -31,7 +31,7 @@ end
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+ gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
@@ -44,6 +44,3 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
-
-
-gem "devise"
