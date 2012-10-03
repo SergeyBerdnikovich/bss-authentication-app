@@ -9,7 +9,7 @@ BssAuthenticationApp::Application.configure do
   config.action_controller.perform_caching = true
 
   #config.action_controller.asset_host = "//s3.amazonaws.com/#{ENV['FOG_DIRECTORY']}" 
-  config.action_controller.asset_host = "//#{ENV['FOG_DIRECTORY']}.s3.amazonaws.com"
+  config.action_controller.asset_host = "https://#{ENV['FOG_DIRECTORY']}.s3.amazonaws.com"
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
   config.serve_static_assets = false
