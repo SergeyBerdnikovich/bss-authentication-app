@@ -1,4 +1,4 @@
-<%= form_tag("/sessions/create", :method => "get") do %>
+<%= form_tag("/sessions/create", :method => "post") do %>
 
   auth_cod: <%= session[:auth_cod]%><br>
   <%= label_tag(:auth_cod, "enter_auth_cod(30 seconds, the time has gone...):") %>

@@ -3,7 +3,7 @@
 		<a class="brand" href="/users">Bss</a>
 		<ul class="nav">
 			<%if session[:user_id] == nil%>
-				<li><a href="/sessions/new">login</a></li>
+				<li><%= link_to "Login", sessions_new_path %></li>
 				<li><%= link_to "LogIn", sessions_new_path, remote: true %></li>
 				<li ><a href="/users/new">Registration</a></li>
 			<%else%>
