@@ -36,7 +36,7 @@ class SessionsController < ApplicationController
 	  		session[:user_id] = params[:user_id]
 	  		session[:auth_cod] = session[:time] = nil
 	  		respond_to do |format|
-		        format.html {redirect_to @user}
+		        format.html {redirect_to users_path}
 		        format.js
 		    end
 	  		#redirect_to users_path
