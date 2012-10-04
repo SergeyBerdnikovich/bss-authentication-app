@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
-  attr_accessible :email, :login, :password, :password_confirmation, :full_name, :two_step_auth
+  attr_accessible :email, :login, :password, :password_confirmation, :full_name, :two_step_auth, :url
   has_one :role, dependent: :destroy
 
   validates :login, presence: "true",
@@ -34,4 +34,13 @@ class User < ActiveRecord::Base
         end
         user
     end
+    def self.find_from_facebook(opts)
+      user = User.find_by_email(opts["email"])
+      if user
+        return user
+      else
+        return User.create(login: opts["name"], email: opts["email"], password: BCrypt::Password.create(rand 999999), two_step_auth: false)
+      end
+    end
+
 end

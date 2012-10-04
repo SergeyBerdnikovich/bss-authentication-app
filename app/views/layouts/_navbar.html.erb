@@ -5,6 +5,7 @@
 			<%if session[:user_id] == nil%>
 				<li><%= link_to "Login", sessions_new_path %></li>
 				<li><%= link_to "LogIn", sessions_new_path, remote: true %></li>
+				<li><%= link_to "LogIn via Facebook", :controller => 'oauth', :action => 'start' %></li>
 				<li ><a href="/users/new">Registration</a></li>
 			<%else%>
 				<li><a href="/sessions/destroy">logout</a></li>

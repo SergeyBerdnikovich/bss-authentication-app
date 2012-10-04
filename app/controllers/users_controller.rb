@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_filter :login_required, :only => [:edit, :update, :destroy, :show, :show_profile]
-  before_filter :check_admin, :only => [:destroy ]
+    before_filter :login_required, :only => [:edit, :update, :destroy, :show, :show_profile]
+    before_filter :check_admin, :only => [:destroy ]
   
   # GET /users
   # GET /users.json
