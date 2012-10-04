@@ -12,8 +12,6 @@ gem 'capybara', group: :test
 gem 'twitter-bootstrap-rails'
 gem 'slim'
 gem 'will_paginate'
-gem 'rails_admin'
-gem 'devise'
 gem 'simplecov', :require => false, :group => :test
 
 gem "koala"

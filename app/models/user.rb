@@ -1,8 +1,7 @@
 class User < ActiveRecord::Base
-
   has_secure_password
 
-  attr_accessible :email, :login, :password, :password_confirmation, :full_name, :two_step_auth, :url
+  attr_accessible :email, :login, :password, :password_confirmation, :full_name, :two_step_auth
   has_one :role, dependent: :destroy
 
   validates :login, presence: "true",

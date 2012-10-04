@@ -1,20 +1,4 @@
 BssAuthenticationApp::Application.routes.draw do
-  get "oauth/start"
-
-  get "oauth/callback"
-
-  get "oauth/get_oauth"
-
-  get "oauth_controller/start"
-
-  get "oauth_controller/callback"
-
-  get "oauth_controller/get_oauth"
-
-  devise_for :admins
-
-  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
-
   get "sessions/new"
   
   post "sessions/show_code"
