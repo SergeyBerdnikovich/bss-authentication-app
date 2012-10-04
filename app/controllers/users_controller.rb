@@ -5,10 +5,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    #page = params[:page].to_i
-    #@users  = User.paginate :page => (page == 0 ? 1 : page), :order => 'created_at', :per_page => 5
     @users = User.order(:login).page params[:page]
-    #@users = User.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -62,7 +59,6 @@ class UsersController < ApplicationController
     else
       @user.role = Role.new(role: "User")
     end  
-
 
     respond_to do |format|
       if @user.save

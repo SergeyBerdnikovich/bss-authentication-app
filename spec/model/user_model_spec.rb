@@ -11,8 +11,16 @@ describe "UsersModel" do
 		it "has correct return value" do
 			User.authenticate(@user.email, @user.password).should be_a_kind_of User
 		end
-		it "has be nill" do
+		it "as not be nil" do
 			User.authenticate("asfasf", "gdasasga").should be_nil
+		end
+	end
+	describe "find_from_facebook" do
+		it "has correct return value" do
+			User.find_from_facebook({"email" => @user.email}).should be_a_kind_of User
+		end
+		it "has correct return value" do
+			User.find_from_facebook("asgfasfdas@asdasd.ds").should be_a_kind_of User
 		end
 	end
 
@@ -21,11 +29,11 @@ describe "UsersModel" do
 			it "has valid value" do
 				@user.login.should match /[0-9a-zA-Z]{3,25}/
 			end
-			it "has not be nill" do
+			it "has not be nil" do
 				@user.login.should_not be_nil
 			end
-			xit "has be uniqueness" do
-				expect{ @user = User.create(:login=> 'sergey', :password=> '1234', :email=> 'asdasd@dsd.dd', :full_name=>"Sasfdas Fasdas", :two_step_auth=>true) }.to raise_error
+			it "has be uniqueness" do
+				expect{ @user = User.create!(:login=> 'sergey2', :password=> '1234', :email=> 'asdasd@dsd.dd', :full_name=>"Sasfdas Fasdas", :two_step_auth=>true) }.to raise_error
 			end
 		end
 		describe "validates :email" do
@@ -35,11 +43,11 @@ describe "UsersModel" do
 			it "has correct size" do
 				(5..50).should cover(@user.email.size)
 			end
-			it "has not be nill" do
+			it "has not be nil" do
 				@user.email.should_not be_nil
 			end
-			xit "has be uniqueness" do
-				expect{ @user = User.create(:login=> 'sergey', :password=> '1234', :email=> 'asdasd@dsd.dd', :full_name=>"Sasfdas Fasdas", :two_step_auth=>true) }.to raise_error
+			it "has be uniqueness" do
+				expect{ @user = User.create!(:login=> 'sergey2', :password=> '1234', :email=> 'asdasd@dsd.dd', :full_name=>"Sasfdas Fasdas", :two_step_auth=>true) }.to raise_error
 			end
 		end
 		describe "validates :full_name" do
@@ -51,7 +59,7 @@ describe "UsersModel" do
 			end
 		end
 		describe "validates :password" do
-			it "has not be nill" do
+			it "has not be nil" do
 				@user.password.should_not be_nil
 			end
 			it "has correct size" do
@@ -62,7 +70,7 @@ describe "UsersModel" do
 			end
 		end
 		describe "validates :password_confirmation" do
-			it "has not be nill" do
+			it "has not be nil" do
 				@user.password_confirmation.should_not be_nil
 			end
 			it "has correct size" do
@@ -73,7 +81,7 @@ describe "UsersModel" do
 			end
 		end
 		describe "validates :two_step_auth" do
-			it "has not be nill" do
+			it "has not be nil" do
 				@user.two_step_auth.should_not be_nil
 			end
 		end

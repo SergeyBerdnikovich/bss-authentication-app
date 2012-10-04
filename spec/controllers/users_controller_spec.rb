@@ -19,14 +19,24 @@ describe UsersController do
 
     it "assigns all users to @users" do
       get :index
-      expect(assigns(:users)).to eq(User.all)
+      expect(assigns(:users)).to eq(User.order(:login).page 1)
     end
   end
-  describe "GET show" do
+
+  describe "GET new" do
+    xit "assigns new user" do
+      #visit new_user_path
+       visit '/users/new'
+      page.should have_content("New User")
+    end
+  end
+
+  describe "POST create" do
     fixtures :users
 
     xit "assigns user to @user" do
-      get :show
+      post :create
+      user = User.create! valid_attributes
       expect(assigns(:one)).to eq(User.first)
     end
   end
