@@ -30,8 +30,9 @@
 
 <div class="pagination ">
     <ul>
-        <li><%= will_paginate @users  %></li>
+        <li><%= paginate @users, :window => 3  %></li>
 </ul>
 </div><br>
+
 <a href="/users/new" class="btn">New User</a>
 

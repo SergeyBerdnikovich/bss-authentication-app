@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_secure_password
+  paginates_per 5
 
   attr_accessible :email, :login, :password, :password_confirmation, :full_name, :two_step_auth
   has_one :role, dependent: :destroy

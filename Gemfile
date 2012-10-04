@@ -11,9 +11,9 @@ gem 'rspec-rails', group: [:development, :test]
 gem 'capybara', group: :test
 gem 'twitter-bootstrap-rails'
 gem 'slim'
-gem 'will_paginate'
 gem 'simplecov', :require => false, :group => :test
-
+gem 'activeadmin'
+gem 'kaminari'
 gem "koala"
 # Gems used only for assets and not required
 # in production environments by default.

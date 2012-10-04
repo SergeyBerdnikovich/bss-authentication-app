@@ -5,5 +5,3 @@ require File.expand_path('../application', __FILE__)
 BssAuthenticationApp::Application.initialize!
 
 require 'rubygems'
-
-gem 'will_paginate'
