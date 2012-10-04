@@ -1,1 +1,20 @@
-$("p#login-body").html("").append("<%= escape_javascript(render "show_code") %>");
+<%if @user %>
+	<%if @user.two_step_auth == true%>
+		$("p#flash").html("");
+		$("p#login-body").html("").append("<%= escape_javascript(render "show_code") %>");
+	<%else%>
+		$("p#login-body").html("");
+		$("div.modal").modal('toggle');
+		$("div.navbar").replaceWith("<%= j render "layouts/navbar" %>");
+		$("div.content").html("").append("<%= j render(template: "users/show_profile") %>");
+	<%end%>
+<%else%>
+	$("p#flash").html("").append("<%=flash[:msg]%>");
+	<%flash.discard(:msg)%>
+<%end%>
+
+$("#close").click(function() {
+    $("div.modal").modal('toggle');
+   	$("p#flash").html("");
+    a
+});

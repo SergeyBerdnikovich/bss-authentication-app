@@ -1,2 +1,7 @@
 $("p#login-body").html("").append("<%= escape_javascript(render "login_form") %>");
 $("div.modal").modal('toggle');
+$("#close").click(function() {
+    $("div.modal").modal('toggle');
+    $("p#flash").html("");
+    a
+});
